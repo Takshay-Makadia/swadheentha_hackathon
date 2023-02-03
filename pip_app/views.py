@@ -1,7 +1,5 @@
 from django.http import HttpResponse
 from django.template import loader
-
-<<<<<<< HEAD
 def home(request):
     return HttpResponse("Hello, Django!")
 def navbar(request):
@@ -10,9 +8,7 @@ def navbar(request):
 
     }
     return HttpResponse(template.render(context,request))
-=======
 from pip_app.models import User
-authorized = False
 
 
 def login(request):
@@ -48,4 +44,4 @@ def login(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
->>>>>>> 3600bb2eaefedf72cc77523822f2b02732d32707
+

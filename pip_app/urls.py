@@ -17,10 +17,13 @@ from django.urls import path
 from pip_app import views
 
 urlpatterns = [
-<<<<<<< HEAD
+
+
     path('', views.home, name='home'),
     path('navbar',views.navbar,name='navbar')
-=======
+
     path('login', views.login, name='login')
->>>>>>> 3600bb2eaefedf72cc77523822f2b02732d32707
+
+    path('login', views.login, name='login')
+
 ]
