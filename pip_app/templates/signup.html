@@ -1,8 +1,6 @@
 {% extends 'base.html' %} {% block head %}
 <title>Sign Up | PIP APP</title>
 {% endblock %} {% block body %}
-
-<!-- Welcome Message -->
 <div class="content-home">
   <form method="POST">
     {% csrf_token %}
@@ -64,8 +62,4 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
-
-<!-- Slideshow -->
-<div class="body-home-slideshow"></div>
-
 {% endblock %}

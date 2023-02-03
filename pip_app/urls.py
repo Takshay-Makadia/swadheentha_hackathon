@@ -18,7 +18,7 @@ from pip_app import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('navbar', views.navbar, name='navbar'),
+    
     path('login', views.login, name='login'),
     path('signup', views.signup, name='signup')
 ]
