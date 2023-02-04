@@ -6,6 +6,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 />
 {% endblock %} {% block body %}
+<<<<<<< HEAD
 <div class="main-container d-flex align-items-start">
   <div
     class="card border border-dark bg-primary text-light position-fixed"
@@ -66,6 +67,13 @@
     <div
       class="container-md align-content-center border border-dark border-rounded m-3"
       style="width: 53rem"
+=======
+<div class="main-container">
+  <span class="align-bottom">
+    {% for a,b,c in data %}
+    <div
+      class="container-md align-content-center border border-dark border-rounded m-5 mw-99"
+>>>>>>> 6e411ba740b808368919917c84549dbdde4a0114
     >
       <div class="card card-body border-0 mh-100">
         <div class="d-flex align-items-start">
@@ -75,6 +83,7 @@
             alt="test"
           />
           <div class="container-md">
+<<<<<<< HEAD
             <h1>Company Name</h1>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Item1</li>
@@ -131,12 +140,22 @@
               <li class="list-group-item">Item2</li>
               <li class="list-group-item">Item3</li>
               <li class="list-group-item">Item4</li>
+=======
+            <h1>{{ c }}</h1>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ b }}</li>
+              <li class="list-group-item">{{ a }}</li>
+>>>>>>> 6e411ba740b808368919917c84549dbdde4a0114
             </ul>
             <h5>Company description</h5>
           </div>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
+=======
+    {% endfor %}
+>>>>>>> 6e411ba740b808368919917c84549dbdde4a0114
   </span>
 </div>
 {% endblock %}
