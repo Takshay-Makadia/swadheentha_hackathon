@@ -7,7 +7,7 @@ from django.template import loader
 from pandas_datareader import data as pdr
 from datetime import datetime
 from django.shortcuts import render
-import pickle 
+import pickle
 from django.http import HttpResponseRedirect
 import pandas as pd
 import numpy as np
@@ -33,12 +33,10 @@ is_login = False
 
 def home(request):
     template = loader.get_template('home.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-def mutual(request):
-    template = loader.get_template('mutual.html')
-    context = {}
+    data = functioni()
+    context = {
+        "data": data
+    }
     return HttpResponse(template.render(context, request))
 
 
@@ -54,7 +52,7 @@ def login(request):
                 if user.password == password:
                     global is_login
                     is_login = True
-                    return HttpResponseRedirect('/description')
+                    return HttpResponseRedirect('/')
                 else:
                     context = {
                         'valid': authorized,
@@ -120,21 +118,39 @@ def signup(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 def mutual(request):
-    if request.method == 'POST':
-        Assets_under_management=float(request.POST.get('AUM')),
-        Net_asset_value=float(request.POST.get('NAV')),
-        Rating=int(request.GET['dropdown']),
-        Dept = float(request.POST.get('debt')),
-        Equity=float(request.POST.get('equity')),
-        Risk=int(request.GET['dropdown'])
-        pickle_in = open('../mutual_fund_model.pickle' , 'rb')
-        testmodel = pickle.load(pickle_in)
-        x_train = [[Assets_under_management , Net_asset_value , Rating , Dept , Equity , Risk]]
-        optimalmutual = testmodel.predict(x_train)
-        print(optimalmutual)
-    return HttpResponse(render(request , 'mutual.html' , {'output' : optimalmutual}))    
-    
+    if is_login == True:
+        if request.method == 'POST':
+            Assets_under_management = float(request.POST.get('AUM'))
+            Net_asset_value = float(request.POST.get('NAV'))
+            Rating = int(request.POST.get('rating'))
+            Dept = float(request.POST.get('debt'))
+            Equity = float(request.POST.get('equity'))
+            Risk = int(request.POST.get('risk'))
+            pickle_in = open('pip_app/mlModels/mutual_fund_model.pickle', 'rb')
+            testmodel = pickle.load(pickle_in)
+            x_train = [[Assets_under_management,
+                        Net_asset_value, Rating, Dept, Equity, Risk]]
+            optimalmutual = testmodel.predict(x_train)
+            context = {
+                "valid": 1,
+                "data": optimalmutual[0]
+            }
+            return HttpResponse(render(request, 'mutual.html', context))
+        else:
+            context = {
+                "valid": 0,
+                "data": []
+            }
+            return HttpResponse(render(request, 'mutual.html', context))
+    else:
+        context = {
+            "valid": 0,
+            "data": []
+        }
+        return HttpResponseRedirect('login')
+
 
 def description(request):
     if is_login == True:
@@ -219,3 +235,24 @@ def stockpredict():
     for i in range(0, 10):
         ret_data.append([values_list[i], error_return[i], maincompany[i]])
     return ret_data
+
+
+def functioni():
+    graph = []
+    company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
+                    'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
+    for val in company_list:
+        import numpy as np
+        import pandas as pd
+
+        from pandas_datareader import data as pdr
+        from datetime import datetime
+
+        import yfinance as yf
+
+        yf.pdr_override()
+
+        df = pdr.get_data_yahoo(val, start='2018-01-01', end=datetime.now())
+        y = np.array(df['Close'])
+        graph.append(y)
+    return np.array(graph)

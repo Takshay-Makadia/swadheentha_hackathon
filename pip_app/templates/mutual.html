@@ -30,10 +30,10 @@
                                         </div>
                                     </div>
 
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name="rating">
                                     
                                         <option selected>Rating</option>
-                                        <option value="1"> 1 </option>
+                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -56,10 +56,10 @@
                                         <input type="text" id="form3Example4cd" class="form-control" name="equity" required/>
                                         </div>
                                     </div>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name="risk">
                                     
                                         <option selected>Risk of Funds</option>
-                                        <option value="0"> 0 </option>
+                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -80,25 +80,13 @@
                                 class="img-fluid" alt="Sample image">
                                 </div>
 
-                                {% comment %} {% if valid == 1 %} <div class="col-md-12 col-lg-2 col-xl-4
+                                {% if valid == 1 %} 
+                                <div class="col-md-12 col-lg-2 col-xl-4
                                 offset-xl-1" style:"height:100px;">
-                                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                <svg
-                                    class="bi flex-shrink-0 me-2"
-                                    width="24"
-                                    height="24"
-                                    role="img"
-                                    aria-label="Danger:"
-                                >
-                                    <use xlink:href="#exclamation-triangle-fill" />
-                                </svg>
-                                <div>{{ message }}</div>
+                                <div class="alert alert-success d-flex align-items-center" style="width: 400px;" role="alert">
+                                    <div> The 3 year expected return of the mutual fund is {{ data }}</div>
                                 </div>
-                                {% endif %} {% endcomment %}
-
-                                <div class="alert alert-success " role="alert">
-                                    A simple success alert—check it out!
-                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
