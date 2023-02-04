@@ -10,11 +10,7 @@ from django.template import loader
 # from datetime import datetime
 # import yfinance as yf
 from django.shortcuts import render
-from pandas_datareader import data as pdr
-import pandas as pd
-import numpy as np
-from datetime import datetime
-import yfinance as yf
+
 
 #yf.pdr_override()
 
