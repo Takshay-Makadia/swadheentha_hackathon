@@ -1,20 +1,20 @@
-<<<<<<< HEAD
-{% extends 'base.html' %} {% block head %}
-<link rel="stylesheet" href="../static/css/login.css"> 
-=======
+
 {% extends 'base.html' %} 
 {% block head %}
->>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
+<link rel="stylesheet" href="../static/css/login.css"> 
 <title>Login | PIP APP</title>
 {% endblock %} 
 
-<<<<<<< HEAD
 <!-- Welcome Message -->
 {% comment %} <div class="content-home">
-=======
+
+{% extends 'base.html' %} 
+{% block head %}
+<title>Login | PIP APP</title>
+{% endblock %} 
 {% block body %}
 <div class="content-home">
->>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
+
   <form method="POST">
     {% csrf_token %}
     <div class="mb-3">
@@ -40,8 +40,9 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-<<<<<<< HEAD
+
 </div> {% endcomment %}
+{% block body %}
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -89,14 +90,8 @@
     </div>
   </div>
   <div
-    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-
-    
+    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">    
   </div>
 </section>
 
-
-=======
-</div>
->>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
 {% endblock %}

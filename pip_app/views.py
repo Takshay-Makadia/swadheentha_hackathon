@@ -1,22 +1,11 @@
 from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
-<<<<<<< HEAD
-from pip_app.models import User
-=======
-
-
-def home(request):
-    return HttpResponse("Hello, Django!")
->>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
 
 def home(request):
     template = loader.get_template('home.html')
     context={}
     return HttpResponse(template.render(context,request))
-
-
-
 
 def login(request):
     template = loader.get_template('login.html')
