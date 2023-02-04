@@ -5,14 +5,26 @@ from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
 from pandas_datareader import data as pdr
+from datetime import datetime
+from django.shortcuts import render
 import pandas as pd
 import numpy as np
-from datetime import datetime
 import yfinance as yf
+<<<<<<< HEAD
 from django.shortcuts import render
 
+=======
+from pandas_datareader import data as pdr
+>>>>>>> 7db29a20fa10272f3dc91a27a167d90425a1cf45
 
 yf.pdr_override()
+tip_stock_data = [[188.5460421680425, 236.7009182928573, 99.58061154001554, 91.51847902965801, 27.382572714947916,
+                   16.51675118697274, 253.728130316792, 39.999404259801054, 418.1426159516163, 16.67486215964931],
+                  [0.44563241894957173, 1.5341651932089917, 1.056293928580999, 0.5229089957524593, 0.134809869310061,
+                   -0.02031812943108946, -1.748366830037412, -0.021803880291429323, 0.5031088955288396, 0.08127136752628417],
+                  ['FedEx Corp', 'Microsoft', 'Amazon', 'Google', 'Marathon Oil Corp', 'American Airline Group',
+                   'Intuitive Surgical', 'Delta Air Lines', 'Deere & Company', 'Newell Brands']]
+
 
 def home(request):
     template = loader.get_template('home.html')
