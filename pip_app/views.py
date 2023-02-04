@@ -9,6 +9,12 @@ from django.template import loader
 # import numpy as np
 # from datetime import datetime
 # import yfinance as yf
+from django.shortcuts import render
+from pandas_datareader import data as pdr
+import pandas as pd
+import numpy as np
+from datetime import datetime
+import yfinance as yf
 
 #yf.pdr_override()
 
@@ -28,7 +34,7 @@ def login(request):
             if user.email == email:
                 if user.password == password:
                     authorized = True
-                    tip_stock_data = stockpredict()
+                    tip_stock_data = []
                     context = {
                         'valid': authorized,
                         'message': 'Succesfully Logged in!',
@@ -91,6 +97,8 @@ def signup(request):
     }
     return HttpResponse(template.render(context, request))
 
+def description(request):
+    return render(request,'description.html')
 
 #def stockpredict():
 
