@@ -4,6 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 from pandas_datareader import data as pdr
 import pandas as pd
 import numpy as np
@@ -91,6 +92,8 @@ def signup(request):
     }
     return HttpResponse(template.render(context, request))
 
+def description(request):
+    return render(request,'description.html')
 
 def stockpredict():
 

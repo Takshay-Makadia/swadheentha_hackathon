@@ -1,0 +1,21 @@
+{% block head %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+/>
+<title>Home | PIP APP</title>
+
+{% endblock %} {% block body %}
+
+<!-- Dashboard - Login Page -->
+{% comment %} {% if valid == True %} {% endcomment %}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+  <i class="fa-solid fa-lightbulb"></i>
+
+  {% comment %}
+  <div>
+    Tip of the day: Company Name - {{ data[0] }}, {{ data[1] }}, {{ data[2] }}
+  </div>
+  {% endcomment %}
+</div>
+{% comment %} {% endif %} {% endcomment %} {% endblock %}
