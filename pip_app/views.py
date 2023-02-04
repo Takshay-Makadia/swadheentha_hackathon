@@ -1,23 +1,23 @@
-from keras.layers import Dense, LSTM
-from keras.models import Sequential
-from sklearn.preprocessing import MinMaxScaler
+# from keras.layers import Dense, LSTM
+# from keras.models import Sequential
+# from sklearn.preprocessing import MinMaxScaler
 from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
-from pandas_datareader import data as pdr
+# from pandas_datareader import data as pdr
 from datetime import datetime
 from django.shortcuts import render
-import pandas as pd
-import numpy as np
-import yfinance as yf
-<<<<<<< HEAD
+
+# import pandas as pd
+# import numpy as np
+# import yfinance as yf
+
 from django.shortcuts import render
 
-=======
-from pandas_datareader import data as pdr
->>>>>>> 7db29a20fa10272f3dc91a27a167d90425a1cf45
 
-yf.pdr_override()
+
+
+# yf.pdr_override()
 tip_stock_data = [[188.5460421680425, 236.7009182928573, 99.58061154001554, 91.51847902965801, 27.382572714947916,
                    16.51675118697274, 253.728130316792, 39.999404259801054, 418.1426159516163, 16.67486215964931],
                   [0.44563241894957173, 1.5341651932089917, 1.056293928580999, 0.5229089957524593, 0.134809869310061,
@@ -48,6 +48,7 @@ def login(request):
                         'valid': authorized,
                         'message': 'Succesfully Logged in!',
                     }
+                    # return HttpResponse(template.render(context,request))
                     return description(request, context)
                 else:
                     context = {
@@ -127,68 +128,72 @@ def description(request, con):
 
 def modelrunner(tip_stock_data):
     if datetime.now().hour == 14 and datetime.now().minute == 52:
-        tip_stock_data = stockpredict()
+        # tip_stock_data = stockpredict()
+        print("IN")
+        
 
     return tip_stock_data
 
 
-def stockpredict():
-    company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
-                    'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
-    values_list = []
-    error_return = []
-    maincompany = ['FedEx Corp', 'Microsoft', 'Amazon', 'Google', 'Marathon Oil Corp',
-                   'American Airline Group', 'Intuitive Surgical', 'Delta Air Lines', 'Deere & Company', 'Newell Brands']
 
-    for ylist in company_list:
-        df1 = pdr.get_data_yahoo(ylist, start='2018-01-01', end=datetime.now())
 
-        data = df1.filter(['Close'])
+# def stockpredict():
+#     company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
+#                     'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
+#     values_list = []
+#     error_return = []
+#     maincompany = ['FedEx Corp', 'Microsoft', 'Amazon', 'Google', 'Marathon Oil Corp',
+#                    'American Airline Group', 'Intuitive Surgical', 'Delta Air Lines', 'Deere & Company', 'Newell Brands']
 
-        myset = data.values
+#     for ylist in company_list:
+#         df1 = pdr.get_data_yahoo(ylist, start='2018-01-01', end=datetime.now())
 
-        training_data_len = int(np.ceil(len(myset) * .95))
-        scaler = MinMaxScaler()
-        scaled_data = scaler.fit_transform(myset)
+#         data = df1.filter(['Close'])
 
-        train_data = scaled_data[0:int(training_data_len), :]
+#         myset = data.values
+    
+#         training_data_len = int(np.ceil(len(myset) * .95))
+#         scaler = MinMaxScaler()
+#         scaled_data = scaler.fit_transform(myset)
 
-        x_train = []
-        y_train = []
+#         train_data = scaled_data[0:int(training_data_len), :]
 
-        for i in range(60, len(train_data)):
-            x_train.append(train_data[i-60:i, 0])
+#         x_train = []
+#         y_train = []
 
-            y_train.append(train_data[i, 0])
+#         for i in range(60, len(train_data)):
+#             x_train.append(train_data[i-60:i, 0])
 
-        x_train, y_train = np.array(x_train), np.array(y_train)
+#             y_train.append(train_data[i, 0])
 
-        x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
-        model = Sequential()
+#         x_train, y_train = np.array(x_train), np.array(y_train)
 
-        model.add(LSTM(128, return_sequences=True,
-                  input_shape=(x_train.shape[1], 1)))
+#         x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
+#         model = Sequential()
 
-        model.add(LSTM(64, return_sequences=False))
-        model.add(Dense(30))
+#         model.add(LSTM(128, return_sequences=True,
+#                   input_shape=(x_train.shape[1], 1)))
 
-        model.add(Dense(1))
+#         model.add(LSTM(64, return_sequences=False))
+#         model.add(Dense(30))
 
-        model.compile(optimizer='adam', loss='mean_squared_error')
+#         model.add(Dense(1))
 
-        model.fit(x_train, y_train, batch_size=1, epochs=1)
-        test_data = scaled_data[training_data_len - 60:, :]
-        x_test = []
+#         model.compile(optimizer='adam', loss='mean_squared_error')
 
-        for i in range(60, len(test_data)):
-            x_test.append(test_data[i-60:i, 0])
+#         model.fit(x_train, y_train, batch_size=1, epochs=1)
+#         test_data = scaled_data[training_data_len - 60:, :]
+#         x_test = []
 
-        x_test = np.array(x_test)
-        x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
-        predictionstoday = model.predict(x_test)
-        predictionstoday = predictionstoday.tolist()
-        predictionstoday = scaler.inverse_transform(predictionstoday)
-        values_list.append(predictionstoday[59].tolist()[0])
-        profit = (predictionstoday[59]-predictionstoday[58]).tolist()[0]
-        error_return.append(profit)
-    return values_list, error_return, maincompany
+#         for i in range(60, len(test_data)):
+#             x_test.append(test_data[i-60:i, 0])
+
+#         x_test = np.array(x_test)
+#         x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+#         predictionstoday = model.predict(x_test)
+#         predictionstoday = predictionstoday.tolist()
+#         predictionstoday = scaler.inverse_transform(predictionstoday)
+#         values_list.append(predictionstoday[59].tolist()[0])
+#         profit = (predictionstoday[59]-predictionstoday[58]).tolist()[0]
+#         error_return.append(profit)
+#     return values_list, error_return, maincompany
