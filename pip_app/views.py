@@ -38,7 +38,6 @@ def login(request):
             if user.email == email:
                 if user.password == password:
                     authorized = 0
-                    # print("in")
                     context = {
                         'valid': authorized,
                         'message': 'Succesfully Logged in!',
@@ -109,7 +108,8 @@ def description(request):
     template = loader.get_template('description.html')
     global tip_stock_data
     tip_stock_data = modelrunner(tip_stock_data)
-    context = {
+    print(tip_stock_data)
+    context = {git
         'data': tip_stock_data
     }
     return HttpResponse(template.render(context, request))
