@@ -1,7 +1,7 @@
 from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
-
+from django.shortcuts import render
 
 def home(request):
     return HttpResponse("Hello, Django!")
@@ -75,3 +75,6 @@ def signup(request):
         'message': 'Sign up successfull'
     }
     return HttpResponse(template.render(context, request))
+
+def description(request):
+    return render(request,'description.html')
