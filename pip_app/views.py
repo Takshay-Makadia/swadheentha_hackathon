@@ -4,9 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
-<<<<<<< HEAD
 from django.shortcuts import render
-=======
 from pandas_datareader import data as pdr
 import pandas as pd
 import numpy as np
@@ -14,7 +12,6 @@ from datetime import datetime
 import yfinance as yf
 
 yf.pdr_override()
->>>>>>> 7033dbdd4bdaa8105f1d69519b56fadfbec1919b
 
 def home(request):
     template = loader.get_template('home.html')
@@ -95,10 +92,8 @@ def signup(request):
     }
     return HttpResponse(template.render(context, request))
 
-<<<<<<< HEAD
 def description(request):
     return render(request,'description.html')
-=======
 
 def stockpredict():
 
@@ -161,4 +156,3 @@ def stockpredict():
         profit = predictionstoday[59]-predictionstoday[58]
         error_return.append(profit)
     return values_list, error_return, maincompany
->>>>>>> 7033dbdd4bdaa8105f1d69519b56fadfbec1919b
