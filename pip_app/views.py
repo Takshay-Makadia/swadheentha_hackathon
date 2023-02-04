@@ -117,7 +117,6 @@ def signup(request):
 
 def description(request):
     if is_login == True:
-        template = loader.get_template('description.html')
         global tip_stock_data
         tip_stock_data = modelrunner(tip_stock_data)
         tip_stock_data.sort(reverse=True, key=lambda x: x[1])
@@ -126,11 +125,11 @@ def description(request):
         }
         return render(request, 'description.html', context)
     else:
-        template = loader.get_template('login.html')
-        context = {
-            'data': []
-        }
-        return HttpResponse(template.render(context, request))
+        return HttpResponseRedirect('login')
+
+
+def mutual(request):
+    return render(request, 'mutual.html', {})
 
 
 def modelrunner(tip_stock_data):
