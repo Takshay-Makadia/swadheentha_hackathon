@@ -12,10 +12,10 @@ import yfinance as yf
 
 yf.pdr_override()
 
-
 def home(request):
-    return HttpResponse("Hello, Django!")
-
+    template = loader.get_template('home.html')
+    context={}
+    return HttpResponse(template.render(context,request))
 
 def login(request):
     template = loader.get_template('login.html')
