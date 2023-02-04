@@ -7,6 +7,7 @@ from django.template import loader
 from pandas_datareader import data as pdr
 from datetime import datetime
 from django.shortcuts import render
+import pickle 
 from django.http import HttpResponseRedirect
 import pandas as pd
 import numpy as np
@@ -119,6 +120,21 @@ def signup(request):
     }
     return HttpResponse(template.render(context, request))
 
+def mutual(request):
+    if request.method == 'POST':
+        Assets_under_management=float(request.POST.get('AUM')),
+        Net_asset_value=float(request.POST.get('NAV')),
+        Rating=int(request.GET['dropdown']),
+        Dept = float(request.POST.get('debt')),
+        Equity=float(request.POST.get('equity')),
+        Risk=int(request.GET['dropdown'])
+        pickle_in = open('../mutual_fund_model.pickle' , 'rb')
+        testmodel = pickle.load(pickle_in)
+        x_train = [[Assets_under_management , Net_asset_value , Rating , Dept , Equity , Risk]]
+        optimalmutual = testmodel.predict(x_train)
+        print(optimalmutual)
+    return HttpResponse(render(request , 'mutual.html' , {'output' : optimalmutual}))    
+    
 
 def description(request):
     if is_login == True:
@@ -131,10 +147,6 @@ def description(request):
         return render(request, 'description.html', context)
     else:
         return HttpResponseRedirect('login')
-
-
-def mutual(request):
-    return render(request, 'mutual.html', {})
 
 
 def modelrunner(tip_stock_data):
