@@ -7,9 +7,14 @@ from django.template import loader
 # from pandas_datareader import data as pdr
 from datetime import datetime
 from django.shortcuts import render
+
 # import pandas as pd
 # import numpy as np
 # import yfinance as yf
+
+from django.shortcuts import render
+
+
 
 
 # yf.pdr_override()
@@ -121,11 +126,15 @@ def description(request, con):
     return HttpResponse(template.render(context, request))
 
 
-# def modelrunner(tip_stock_data):
-#     if datetime.now().hour == 14 and datetime.now().minute == 52:
-#         tip_stock_data = stockpredict()
+def modelrunner(tip_stock_data):
+    if datetime.now().hour == 14 and datetime.now().minute == 52:
+        # tip_stock_data = stockpredict()
+        print("IN")
+        
 
-#     return tip_stock_data
+    return tip_stock_data
+
+
 
 
 # def stockpredict():
