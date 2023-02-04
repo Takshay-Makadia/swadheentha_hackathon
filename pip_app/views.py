@@ -10,7 +10,12 @@ from django.shortcuts import render
 import pandas as pd
 import numpy as np
 import yfinance as yf
+<<<<<<< HEAD
+from django.shortcuts import render
+
+=======
 from pandas_datareader import data as pdr
+>>>>>>> 7db29a20fa10272f3dc91a27a167d90425a1cf45
 
 yf.pdr_override()
 tip_stock_data = [[188.5460421680425, 236.7009182928573, 99.58061154001554, 91.51847902965801, 27.382572714947916,
