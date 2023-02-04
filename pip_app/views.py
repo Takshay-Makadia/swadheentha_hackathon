@@ -31,6 +31,11 @@ def home(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+def mutual(request):
+    template = loader.get_template('mutual.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 
 def login(request):
     template = loader.get_template('login.html')

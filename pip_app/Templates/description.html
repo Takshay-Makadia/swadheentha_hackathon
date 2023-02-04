@@ -1,113 +1,142 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block head %}
+{% extends 'base.html' %} {% load static %} {% block head %}
 <title>Description | PIP APP</title>
-<link rel="stylesheet" href="{% static '/css/description.css'%}">
+<link rel="stylesheet" href="{% static '/css/description.css'%}" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 />
 {% endblock %} {% block body %}
 <div class="main-container d-flex align-items-start">
-<div class="card border border-dark bg-primary text-light position-fixed" style="width: 20rem; height:100vh">
-   <h5 class="date pl-3 pr-3 pt-2 pb-1"> 4 feb,2023 </h5>
-   <h5 class="time pl-3 pr-3 pb-2"> 11:44 PM, Saturday </h5>
-   <div class="border border-dark"> </div>
-   <div class="alert alert-warning d-flex align-item-start ml-2 mr-2 mt-3 mb-5" role="alert">
-    <i class="fa-solid fa-lightbulb"></i>
-    <p> PRO TIP </p>
-  </div>
-   <p class="investment pl-2" style="font-size:1.2em; text-decoration:underline;"> Method of investment </p>
-   <div class="form-check ml-2">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="1" checked>
-    <label class="form-check-label" for="1">
-     Stock Market
-    </label>
-  </div>
-  <div class="form-check ml-2 mb-4">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="2">
-    <label class="form-check-label" for="2">
-      Mutual Funds
-    </label>
-  </div>
-  {% comment %} Dropdown (Sorting) {% endcomment %}
-  <div class="dropdown m-3">
-   
-    <select class="form-select dropdown-toggle p-2" aria-label="Default select example">
+  <div
+    class="card border border-dark bg-primary text-light position-fixed"
+    style="width: 20rem; height: 100vh"
+  >
+    <h5 class="date pl-3 pr-3 pt-2 pb-1">4 feb,2023</h5>
+    <h5 class="time pl-3 pr-3 pb-2">11:44 PM, Saturday</h5>
+    <div class="border border-dark"></div>
+    <div
+      class="alert alert-warning d-flex align-item-start ml-2 mr-2 mt-3 mb-5"
+      role="alert"
+    >
+      <i class="fa-solid fa-lightbulb"></i>
+      <p>PRO TIP</p>
+    </div>
+    <p
+      class="investment pl-2"
+      style="font-size: 1.2em; text-decoration: underline"
+    >
+      Method of investment
+    </p>
+    <div class="form-check ml-2">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault"
+        id="1"
+        checked
+      />
+      <label class="form-check-label" for="1"> Stock Market </label>
+    </div>
+    <div class="form-check ml-2 mb-4">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault"
+        id="2"
+      />
+      <label class="form-check-label" for="2"> Mutual Funds </label>
+    </div>
+    {% comment %} Dropdown (Sorting) {% endcomment %}
+    <div class="dropdown m-3">
+      <select
+        class="form-select dropdown-toggle p-2"
+        aria-label="Default select example"
+      >
         <option selected>Compare</option>
         <option value="1">Name</option>
         <option value="2">Profit</option>
         <option value="3">Risk Factor</option>
       </select>
+    </div>
   </div>
-</div>
-      
 
   {% comment %} # Side card {% endcomment %}
 
-  <span class="align-bottom" style="margin-left:21rem;">
-    <div class="container-md align-content-center border border-dark border-rounded m-3" style = "width:53rem;">
-        <div class="card card-body border-0 ">
-            <div class="d-flex align-items-start">
-            <img id="profile-pic" src="/static/images/investment_home.jpg" alt="test">
-            <div class="container-md">
+  <span class="align-bottom">
+    <div
+      class="container-md align-content-center border border-dark border-rounded m-3"
+      style="width: 53rem"
+    >
+      <div class="card card-body border-0 mh-100">
+        <div class="d-flex align-items-start">
+          <img
+            id="profile-pic"
+            src="/static/images/investment_home.jpg"
+            alt="test"
+          />
+          <div class="container-md">
             <h1>Company Name</h1>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Item1</li>
-                <li class="list-group-item">Item2</li>
-                <li class="list-group-item">Item3</li>
-                <li class="list-group-item">Item4</li>
+              <li class="list-group-item">Item1</li>
+              <li class="list-group-item">Item2</li>
+              <li class="list-group-item">Item3</li>
+              <li class="list-group-item">Item4</li>
             </ul>
             <h5>Company description</h5>
-        </div>
           </div>
-            
         </div>
-    </div>
-    
-    <div class="container-md align-content-center border border-dark border-rounded m-3" style = "width:53rem;">
-        <div class="card card-body border-0 ">
-            <div class="d-flex align-items-start">
-            <img id="profile-pic" src="/static/images/investment_home.jpg" alt="test">
-            <div class="container-md">
-            <h1>Company Name</h1>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Item1</li>
-                <li class="list-group-item">Item2</li>
-                <li class="list-group-item">Item3</li>
-                <li class="list-group-item">Item4</li>
-            </ul>
-            <h5>Company description</h5>
-        </div>
-          </div>
-            
-        </div>
+      </div>
     </div>
 
-    <div class="container-md align-content-center border border-dark border-rounded m-3" style = "width:53rem;">
-        <div class="card card-body border-0 ">
-            <div class="d-flex align-items-start">
-            <img id="profile-pic" src="/static/images/investment_home.jpg" alt="test">
-            <div class="container-md">
+    <div
+      class="container-md align-content-center border border-dark border-rounded m-3"
+      style="width: 53rem"
+    >
+      <div class="card card-body border-0">
+        <div class="d-flex align-items-start">
+          <img
+            id="profile-pic"
+            src="/static/images/investment_home.jpg"
+            alt="test"
+          />
+          <div class="container-md">
             <h1>Company Name</h1>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Item1</li>
-                <li class="list-group-item">Item2</li>
-                <li class="list-group-item">Item3</li>
-                <li class="list-group-item">Item4</li>
+              <li class="list-group-item">Item1</li>
+              <li class="list-group-item">Item2</li>
+              <li class="list-group-item">Item3</li>
+              <li class="list-group-item">Item4</li>
             </ul>
             <h5>Company description</h5>
-        </div>
           </div>
-            
         </div>
+      </div>
     </div>
 
-    
-       
-    </span>
+    <div
+      class="container-md align-content-center border border-dark border-rounded m-3"
+      style="width: 53rem"
+    >
+      <div class="card card-body border-0">
+        <div class="d-flex align-items-start">
+          <img
+            id="profile-pic"
+            src="/static/images/investment_home.jpg"
+            alt="test"
+          />
+          <div class="container-md">
+            <h1>Company Name</h1>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Item1</li>
+              <li class="list-group-item">Item2</li>
+              <li class="list-group-item">Item3</li>
+              <li class="list-group-item">Item4</li>
+            </ul>
+            <h5>Company description</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
 </div>
-
-
-    </div
 {% endblock %}
