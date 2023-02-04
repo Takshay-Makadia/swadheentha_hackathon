@@ -5,43 +5,6 @@
 <title>Login | PIP APP</title>
 {% endblock %} 
 
-<!-- Welcome Message -->
-{% comment %} <div class="content-home">
-
-{% extends 'base.html' %} 
-{% block head %}
-<title>Login | PIP APP</title>
-{% endblock %} 
-{% block body %}
-<div class="content-home">
-
-  <form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        name="email"
-      />
-      <div id="emailHelp" class="form-text">
-        We'll never share your email with anyone else.
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-
-</div> {% endcomment %}
 {% block body %}
 <section style="height:100vh">
   <div class="container-fluid h-custom">
@@ -67,13 +30,6 @@
             <input type="password" id="form3Example3" class="form-control form-control-lg"
               placeholder="Enter a valid email address" name="password" />
           </div>
-
-          {% comment %} <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" /> {% endcomment %}
-            
-
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
