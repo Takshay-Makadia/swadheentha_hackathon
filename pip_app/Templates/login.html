@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 {% extends 'base.html' %} {% block head %}
 <link rel="stylesheet" href="../static/css/login.css"> 
+=======
+{% extends 'base.html' %} 
+{% block head %}
+>>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
 <title>Login | PIP APP</title>
-{% endblock %} {% block body %}
+{% endblock %} 
 
+<<<<<<< HEAD
 <!-- Welcome Message -->
 {% comment %} <div class="content-home">
+=======
+{% block body %}
+<div class="content-home">
+>>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
   <form method="POST">
     {% csrf_token %}
     <div class="mb-3">
@@ -30,6 +40,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+<<<<<<< HEAD
 </div> {% endcomment %}
 <section class="vh-100">
   <div class="container-fluid h-custom">
@@ -85,4 +96,7 @@
 </section>
 
 
+=======
+</div>
+>>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
 {% endblock %}

@@ -17,9 +17,13 @@ from django.urls import path
 from pip_app import views
 
 urlpatterns = [
-
-
     path('', views.home, name='home'),
+<<<<<<< HEAD
     path('login', views.login, name='login')
 
+=======
+    
+    path('login', views.login, name='login'),
+    path('signup', views.signup, name='signup')
+>>>>>>> feeee1aeec3f40ef95c4360f07aadd8a134e4ce0
 ]

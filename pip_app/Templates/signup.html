@@ -1,19 +1,65 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
-
-{% block head %}
-<title>Login | PIP APP</title>
-{% endblock %}
-
-{% block body %}
-
-<!-- Welcome Message -->
+{% extends 'base.html' %} {% block head %}
+<title>Sign Up | PIP APP</title>
+{% endblock %} {% block body %}
 <div class="content-home">
-    <p>♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢</p>
-    <h2><br>WELCOME<br><br>TO<br><br>EVENT MANAGER<br><br></h2>
-    <p>♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢ ♢</p>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputname1" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputname1"
+        name="name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        name="email"
+      />
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputage1" class="form-label">Age</label>
+      <input
+        type="number"
+        class="form-control"
+        id="exampleInputname1"
+        name="age"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        name="password"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputcnfPassword1" class="form-label"
+        >Confirm Password</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputcnfPassword1"
+        name="cnfPassword"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
-
-<!-- Slideshow -->
-<div class="body-home-slideshow"></div>
-
 {% endblock %}
