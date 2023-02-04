@@ -16,7 +16,7 @@ import yfinance as yf
 from django.shortcuts import render
 
 
-yf.pdr_override()
+# yf.pdr_override()
 tip_stock_data = [[189.6889966111405, 0.7060766202032482, 'FedEx Corp'],
                   [244.65085540555947, 1.5198581124400334, 'Microsoft'],
                   [95.0167578768742, 0.9917686892076745, 'Amazon'],
@@ -173,68 +173,67 @@ def modelrunner(tip_stock_data):
     return tip_stock_data
 
 
-def stockpredict():
-    company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
-                    'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
-    values_list = []
-    error_return = []
-    maincompany = ['FedEx Corp', 'Microsoft', 'Amazon', 'Google', 'Marathon Oil Corp',
-                   'American Airline Group', 'Intuitive Surgical', 'Delta Air Lines', 'Deere & Company', 'Newell Brands']
+# def stockpredict():
+#     company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
+#                     'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
+#     values_list = []
+#     error_return = []
+#     maincompany = ['FedEx Corp', 'Microsoft', 'Amazon', 'Google', 'Marathon Oil Corp',
+#                    'American Airline Group', 'Intuitive Surgical', 'Delta Air Lines', 'Deere & Company', 'Newell Brands']
 
-    for ylist in company_list:
-        df1 = pdr.get_data_yahoo(ylist, start='2018-01-01', end=datetime.now())
+#     for ylist in company_list:
+#         df1 = pdr.get_data_yahoo(ylist, start='2018-01-01', end=datetime.now())
 
-        data = df1.filter(['Close'])
+#         data = df1.filter(['Close'])
 
-        myset = data.values
+#         myset = data.values
 
-        training_data_len = int(np.ceil(len(myset) * .95))
-        scaler = MinMaxScaler()
-        scaled_data = scaler.fit_transform(myset)
+#         training_data_len = int(np.ceil(len(myset) * .95))
+#         scaler = MinMaxScaler()
+#         scaled_data = scaler.fit_transform(myset)
 
-        train_data = scaled_data[0:int(training_data_len), :]
+#         train_data = scaled_data[0:int(training_data_len), :]
 
-        x_train = []
-        y_train = []
+#         x_train = []
+#         y_train = []
 
-        for i in range(60, len(train_data)):
-            x_train.append(train_data[i-60:i, 0])
+#         for i in range(60, len(train_data)):
+#             x_train.append(train_data[i-60:i, 0])
 
-            y_train.append(train_data[i, 0])
+#             y_train.append(train_data[i, 0])
 
-        x_train, y_train = np.array(x_train), np.array(y_train)
+#         x_train, y_train = np.array(x_train), np.array(y_train)
 
-        x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
-        model = Sequential()
+#         x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
+#         model = Sequential()
 
-        model.add(LSTM(128, return_sequences=True,
-                  input_shape=(x_train.shape[1], 1)))
+#         model.add(LSTM(128, return_sequences=True,
+#                   input_shape=(x_train.shape[1], 1)))
 
-        model.add(LSTM(64, return_sequences=False))
-        model.add(Dense(30))
+#         model.add(LSTM(64, return_sequences=False))
+#         model.add(Dense(30))
 
-        model.add(Dense(1))
+#         model.add(Dense(1))
 
-        model.compile(optimizer='adam', loss='mean_squared_error')
+#         model.compile(optimizer='adam', loss='mean_squared_error')
 
-        model.fit(x_train, y_train, batch_size=1, epochs=1)
-        test_data = scaled_data[training_data_len - 60:, :]
-        x_test = []
-        for i in range(60, len(test_data)):
-            x_test.append(test_data[i-60:i, 0])
-
-        x_test = np.array(x_test)
-        x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
-        predictionstoday = model.predict(x_test)
-        predictionstoday = predictionstoday.tolist()
-        predictionstoday = scaler.inverse_transform(predictionstoday)
-        values_list.append(predictionstoday[59].tolist()[0])
-        profit = (predictionstoday[59]-predictionstoday[58]).tolist()[0]
-        error_return.append(profit)
-    ret_data = []
-    for i in range(0, 10):
-        ret_data.append([values_list[i], error_return[i], maincompany[i]])
-    return ret_data
+#         model.fit(x_train, y_train, batch_size=1, epochs=1)
+#         test_data = scaled_data[training_data_len - 60:, :]
+#         x_test = []
+#         for i in range(60, len(test_data)):
+#             x_test.append(test_data[i-60:i, 0])
+#         x_test = np.array(x_test)
+#         x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+#         predictionstoday = model.predict(x_test)
+#         predictionstoday = predictionstoday.tolist()
+#         predictionstoday = scaler.inverse_transform(predictionstoday)
+#         values_list.append(predictionstoday[59].tolist()[0])
+#         profit = (predictionstoday[59]-predictionstoday[58]).tolist()[0]
+#         error_return.append(profit)
+#     ret_data = []
+#     for i in range(0, 10):
+#         ret_data.append([values_list[i], error_return[i], maincompany[i]])
+#     return ret_data
 
 
 def functioni():
@@ -242,16 +241,6 @@ def functioni():
     company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
                     'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
     for val in company_list:
-        import numpy as np
-        import pandas as pd
-
-        from pandas_datareader import data as pdr
-        from datetime import datetime
-
-        import yfinance as yf
-
-        yf.pdr_override()
-
         df = pdr.get_data_yahoo(val, start='2018-01-01', end=datetime.now())
         y = np.array(df['Close'])
         graph.append(y)
