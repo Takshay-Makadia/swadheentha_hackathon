@@ -109,7 +109,7 @@ def description(request):
     global tip_stock_data
     tip_stock_data = modelrunner(tip_stock_data)
     print(tip_stock_data)
-    context = {git
+    context = {
         'data': tip_stock_data
     }
     return HttpResponse(template.render(context, request))
