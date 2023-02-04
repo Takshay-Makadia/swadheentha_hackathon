@@ -1,14 +1,13 @@
 from django.http import HttpResponse
 from django.template import loader
-def home(request):
-    return HttpResponse("Hello, Django!")
-def navbar(request):
-    template = loader.get_template('navbar.html')
-    context={
-
-    }
-    return HttpResponse(template.render(context,request))
 from pip_app.models import User
+
+def home(request):
+    template = loader.get_template('home.html')
+    context={}
+    return HttpResponse(template.render(context,request))
+
+
 
 
 def login(request):
@@ -37,7 +36,7 @@ def login(request):
             else:
                 context = {
                     'valid': authorized,
-                    'message': 'User doesnot exits!'
+                    'message': 'User does not exits!'
                 }
                 return HttpResponse(template.render(context, request))
 

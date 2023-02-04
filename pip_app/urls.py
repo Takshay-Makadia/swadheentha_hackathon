@@ -20,10 +20,6 @@ urlpatterns = [
 
 
     path('', views.home, name='home'),
-    path('navbar',views.navbar,name='navbar')
-
-    path('login', views.login, name='login')
-
     path('login', views.login, name='login')
 
 ]
