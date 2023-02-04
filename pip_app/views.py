@@ -7,18 +7,27 @@ from django.template import loader
 from pandas_datareader import data as pdr
 from datetime import datetime
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 import pandas as pd
 import numpy as np
 import yfinance as yf
-from pandas_datareader import data as pdr
+
+from django.shortcuts import render
+
 
 yf.pdr_override()
-tip_stock_data = [[188.5460421680425, 236.7009182928573, 99.58061154001554, 91.51847902965801, 27.382572714947916,
-                   16.51675118697274, 253.728130316792, 39.999404259801054, 418.1426159516163, 16.67486215964931],
-                  [0.44563241894957173, 1.5341651932089917, 1.056293928580999, 0.5229089957524593, 0.134809869310061,
-                   -0.02031812943108946, -1.748366830037412, -0.021803880291429323, 0.5031088955288396, 0.08127136752628417],
-                  ['FedEx Corp', 'Microsoft', 'Amazon', 'Google', 'Marathon Oil Corp', 'American Airline Group',
-                   'Intuitive Surgical', 'Delta Air Lines', 'Deere & Company', 'Newell Brands']]
+tip_stock_data = [[189.6889966111405, 0.7060766202032482, 'FedEx Corp'],
+                  [244.65085540555947, 1.5198581124400334, 'Microsoft'],
+                  [95.0167578768742, 0.9917686892076745, 'Amazon'],
+                  [105.38846594293318, 0.7523660348394969, 'Google'],
+                  [28.653646620252747, 0.13682440490106274, 'Marathon Oil Corp'],
+                  [15.58123777522924, 0.0316022962929452, 'American Airline Group'],
+                  [249.91836326515798, -1.628491556125482, 'Intuitive Surgical'],
+                  [40.20137876987968, -0.0012488189144619355, 'Delta Air Lines'],
+                  [386.390697277, 0.6748122246563071, 'Deere & Company'],
+                  [15.904774689379396, 0.07756562712530979, 'Newell Brands']]
+
+is_login = False
 
 
 def home(request):
@@ -37,12 +46,9 @@ def login(request):
         for user in user_database:
             if user.email == email:
                 if user.password == password:
-                    authorized = 0
-                    context = {
-                        'valid': authorized,
-                        'message': 'Succesfully Logged in!',
-                    }
-                    return description(request)
+                    global is_login
+                    is_login = True
+                    return HttpResponseRedirect('/description')
                 else:
                     context = {
                         'valid': authorized,
@@ -57,6 +63,12 @@ def login(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+
+def logout(request):
+    global is_login
+    is_login = False
+    return HttpResponseRedirect('/login')
 
 
 def signup(request):
@@ -97,27 +109,34 @@ def signup(request):
             'valid': 0,
             'message': 'Sign up successfull'
         }
-        template = loader.get_template('login.html')
-        return HttpResponse(template.render(context, request))
+        return HttpResponseRedirect('login')
     context = {
     }
     return HttpResponse(template.render(context, request))
 
 
 def description(request):
-    template = loader.get_template('description.html')
-    global tip_stock_data
-    tip_stock_data = modelrunner(tip_stock_data)
-    print(tip_stock_data)
-    context = {
-        'data': tip_stock_data
-    }
-    return HttpResponse(template.render(context, request))
+    if is_login == True:
+        template = loader.get_template('description.html')
+        global tip_stock_data
+        tip_stock_data = modelrunner(tip_stock_data)
+        tip_stock_data.sort(reverse=True, key=lambda x: x[1])
+        context = {
+            'data': tip_stock_data
+        }
+        return render(request, 'description.html', context)
+    else:
+        template = loader.get_template('login.html')
+        context = {
+            'data': []
+        }
+        return HttpResponse(template.render(context, request))
 
 
 def modelrunner(tip_stock_data):
-    if datetime.now().hour == 16 and datetime.now().minute == 1:
-        tip_stock_data = stockpredict()
+    if datetime.now().hour == 16 and datetime.now().minute == 56:
+        # tip_stock_data = stockpredict()
+        print("IN")
 
     return tip_stock_data
 
@@ -169,7 +188,6 @@ def stockpredict():
         model.fit(x_train, y_train, batch_size=1, epochs=1)
         test_data = scaled_data[training_data_len - 60:, :]
         x_test = []
-
         for i in range(60, len(test_data)):
             x_test.append(test_data[i-60:i, 0])
 
@@ -182,7 +200,6 @@ def stockpredict():
         profit = (predictionstoday[59]-predictionstoday[58]).tolist()[0]
         error_return.append(profit)
     ret_data = []
-    for i in range(0, 9):
+    for i in range(0, 10):
         ret_data.append([values_list[i], error_return[i], maincompany[i]])
-
     return ret_data

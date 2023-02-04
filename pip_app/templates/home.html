@@ -1,17 +1,40 @@
+{% extends 'base.html' %}
 {% block head %}
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 />
+<link rel="stylesheet" href="../static/css/home.css">
 <title>Home | PIP APP</title>
 
 {% endblock %} {% block body %}
 
-<!-- Dashboard - Login Page -->
-{% comment %} {% if valid == True %} {% endcomment %}
-<div class="alert alert-success d-flex align-items-center" role="alert">
-  <i class="fa-solid fa-lightbulb"></i>
-
-  <div>Tip of the day: Company Name -</div>
+<div class="container"> 
+  <img src = "../static/images/invest_main.jpg">
+  <div class="centered"> 
+    <h1> PIP </h1>
+    <h3> Personalised Investment Portfolio </h3>
+  </div>
+</img>
 </div>
-{% comment %} {% endif %} {% endcomment %} {% endblock %}
+<div class="card-container d-flex">
+  <div class="card bg-dark text-light" style="width:20rem; margin-left:10rem; margin-right:10rem; margin-top:2rem; margin-bottom:2rem;">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Stock Markets</h5>
+      <p class="card-text">Stock markets are venues where buyers and sellers meet to exchange equity shares of public corporations.Stock markets create efficient price discovery and efficient dealing.</p>
+      <button type="button" class="btn border border-rounded pl-5 pr-5 bg-primary"> <a href="description" class="card-link text-light">Predicted Stocks</a> </button>
+    </div>
+  </div>
+  
+
+
+  <div class="card bg-dark text-light" style="width: 20rem; margin-left:10rem; margin-right:10rem; margin-top:2rem; margin-bottom:2rem;;">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Mutual Funds</h5>
+      <p class="card-text">Mutual funds let you pool your money with other investors to "mutually" buy stocks, bonds, and other investments. They're run by professional money managers who decide which securities to buy (stocks, bonds, etc.) and when to sell them. </p>
+      <button type="button" class="btn border border-rounded pl-5 pr-5 bg-primary"> <a href="#" class="card-link text-light">Mutual interests</a> </button>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
