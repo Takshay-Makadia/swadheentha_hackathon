@@ -1,67 +1,6 @@
 {% extends 'base.html' %} {% block head %}
 <title>Sign Up | PIP APP</title>
 {% endblock %} {% block body %}
-{% comment %} <div class="content-home">
-  <form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="exampleInputname1" class="form-label">Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="exampleInputname1"
-        name="name"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        name="email"
-      />
-      <div id="emailHelp" class="form-text">
-        We'll never share your email with anyone else.
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputage1" class="form-label">Age</label>
-      <input
-        type="number"
-        class="form-control"
-        id="exampleInputname1"
-        name="age"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="exampleInputPassword1"
-        name="password"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputcnfPassword1" class="form-label"
-        >Confirm Password</label
-      >
-      <input
-        type="password"
-        class="form-control"
-        id="exampleInputcnfPassword1"
-        name="cnfPassword"
-      />
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div> {% endcomment %}
 
 <section class="bg-primary mt-4 pt-6" style:"width:100% height:fit-content" >
   <div class="container mt-6">
@@ -73,7 +12,7 @@
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-                {% if valid == 1 %} <div class="col-md-12 col-lg-2 col-xl-4
+                {% comment %} {% if valid == 1 %} <div class="col-md-12 col-lg-2 col-xl-4
                 offset-xl-1" style:"height:100px;">
                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                   <svg
@@ -87,7 +26,7 @@
                   </svg>
                   <div>{{ message }}</div>
                 </div>
-                {% endif %}
+                {% endif %} {% endcomment %}
                 <form class="mx-1 mx-md-4" method="POST">
                   {% csrf_token %}
 
@@ -138,12 +77,21 @@
                 </form>
 
               </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  class="img-fluid" alt="Sample image">
-
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-7  align-items-center order-1 order-lg-2">
+              <div class="image">
+             
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                class="img-fluid" alt="Sample image">
               </div>
+
+              <div class="alert alert-success " role="alert">
+                  A simple success alert—check it out!
+
+            </div>
+
+                
+                </div>
             </div>
           </div>
         </div>
