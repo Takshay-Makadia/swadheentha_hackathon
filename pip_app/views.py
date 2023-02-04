@@ -35,15 +35,15 @@ def login(request):
         password = request.POST.get('password')
         user_database = User.objects.all()
         for user in user_database:
-            print(user.email)
             if user.email == email:
                 if user.password == password:
                     authorized = 0
+                    # print("in")
                     context = {
                         'valid': authorized,
                         'message': 'Succesfully Logged in!',
                     }
-                    return description(request, context)
+                    return description(request)
                 else:
                     context = {
                         'valid': authorized,
@@ -105,23 +105,18 @@ def signup(request):
     return HttpResponse(template.render(context, request))
 
 
-def description(request, con):
+def description(request):
     template = loader.get_template('description.html')
     global tip_stock_data
     tip_stock_data = modelrunner(tip_stock_data)
-    ret_data = []
-    if con.valid == 1:
-        ret_data = tip_stock_data
     context = {
-        'valid': con.valid,
-        'message': con.message,
-        'data': ret_data
+        'data': tip_stock_data
     }
     return HttpResponse(template.render(context, request))
 
 
 def modelrunner(tip_stock_data):
-    if datetime.now().hour == 14 and datetime.now().minute == 52:
+    if datetime.now().hour == 16 and datetime.now().minute == 1:
         tip_stock_data = stockpredict()
 
     return tip_stock_data
@@ -186,4 +181,8 @@ def stockpredict():
         values_list.append(predictionstoday[59].tolist()[0])
         profit = (predictionstoday[59]-predictionstoday[58]).tolist()[0]
         error_return.append(profit)
-    return values_list, error_return, maincompany
+    ret_data = []
+    for i in range(0, 9):
+        ret_data.append([values_list[i], error_return[i], maincompany[i]])
+
+    return ret_data

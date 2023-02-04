@@ -1,25 +1,24 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block head %}
+{% extends 'base.html' %} {% load static %} {% block head %}
 <title>Discription | PIP APP</title>
-<link rel="stylesheet" href="{% static '/css/description.css'%}">
-{% endblock %} {% block body %}
-    <div class="container-md align-content-center">
-        <div class="card card-body">
-            <div class="d-flex align-items-start">
-            <img id="profile-pic" src="/static/images/investment_home.jpg" alt="test">
-            <div class="container-md">
-            <h1>Company Name</h1>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Item1</li>
-                <li class="list-group-item">Item2</li>
-                <li class="list-group-item">Item3</li>
-                <li class="list-group-item">Item4</li>
-            </ul>
-            <h5>Company description</h5>
-        </div>
-          </div>
-            
-        </div>
+<link rel="stylesheet" href="{% static '/css/description.css'%}" />
+{% endblock %} {% block body %} {% for a,b,c in data %}
+<div class="container-md align-content-center">
+  <div class="card card-body">
+    <div class="d-flex align-items-start">
+      <img
+        id="profile-pic"
+        src="/static/images/investment_home.jpg"
+        alt="test"
+      />
+      <div class="container-md">
+        <h1>{{ c }}</h1>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ b }}</li>
+          <li class="list-group-item">{{ a }}</li>
+        </ul>
+        <h5>Company description</h5>
+      </div>
     </div>
-{% endblock %}
+  </div>
+</div>
+{% endfor %} {% endblock %}
