@@ -29,6 +29,7 @@ def login(request):
                 if user.password == password:
                     authorized = True
                     tip_stock_data = stockpredict()
+                    print(tip_stock_data)
                     context = {
                         'valid': authorized,
                         'message': 'Succesfully Logged in!',
