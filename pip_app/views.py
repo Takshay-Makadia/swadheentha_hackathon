@@ -2,10 +2,10 @@ from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
 
-
 def home(request):
-    return HttpResponse("Hello, Django!")
-
+    template = loader.get_template('home.html')
+    context={}
+    return HttpResponse(template.render(context,request))
 
 def login(request):
     template = loader.get_template('login.html')
@@ -32,7 +32,7 @@ def login(request):
             else:
                 context = {
                     'valid': authorized,
-                    'message': 'User doesnot exits!'
+                    'message': 'User does not exits!'
                 }
                 return HttpResponse(template.render(context, request))
 
