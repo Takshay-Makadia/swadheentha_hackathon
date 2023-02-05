@@ -271,7 +271,13 @@ def modelrunner(tip_stock_data):
 #         y = np.array(df['Close'])
 #         graph.append(y)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #     return np.array(graph)
+=======
+#     print(graph, type(graph))
+#     # return np.array(graph)
+#     return []
+>>>>>>> 8f73f18766c6f68afabfa0ac36609d68cbc2ee49
 =======
 #     print(graph, type(graph))
 #     # return np.array(graph)
