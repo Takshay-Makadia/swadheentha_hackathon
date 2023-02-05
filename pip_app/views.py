@@ -270,4 +270,10 @@ def modelrunner(tip_stock_data):
 #         df = pdr.get_data_yahoo(val, start='2018-01-01', end=datetime.now())
 #         y = np.array(df['Close'])
 #         graph.append(y)
+<<<<<<< HEAD
 #     return np.array(graph)
+=======
+#     print(graph, type(graph))
+#     # return np.array(graph)
+#     return []
+>>>>>>> 8f73f18766c6f68afabfa0ac36609d68cbc2ee49
