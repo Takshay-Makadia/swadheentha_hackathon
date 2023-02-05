@@ -33,9 +33,9 @@ is_login = False
 
 def home(request):
     template = loader.get_template('home.html')
-    # data = functioni()
+    # ret = functioni()
     context = {
-        # "data": data
+        # "data": ret
     }
     return HttpResponse(template.render(context, request))
 
@@ -156,17 +156,43 @@ def description(request):
     if is_login == True:
         global tip_stock_data
         tip_stock_data = modelrunner(tip_stock_data)
-        tip_stock_data.sort(reverse=True, key=lambda x: x[1])
-        context = {
-            'data': tip_stock_data
-        }
-        return render(request, 'description.html', context)
+        if request.method == 'POST':
+            Inc = request.POST.get('select')
+            if Inc == '1':
+                tip_stock_data.sort(reverse=True, key=lambda x: x[1])
+                context = {
+                    'data': tip_stock_data
+                }
+            elif Inc == '2':
+                tip_stock_data.sort(reverse=True)
+                context = {
+                    'data': tip_stock_data
+                }
+            tx = request.POST.get('name')
+            tmp = []
+            if tx != "":
+                for ret, close, company in tip_stock_data:
+                    if company == tx:
+                        tmp = [[ret, close, company]]
+                context = {
+                    'data': tmp
+                }
+                return render(request, 'description.html', context)
+            context = {
+                'data': tip_stock_data
+            }
+            return render(request, 'description.html', context)
+        else:
+            context = {
+                'data': tip_stock_data
+            }
+            return render(request, 'description.html', context)
     else:
         return HttpResponseRedirect('login')
 
 
 def modelrunner(tip_stock_data):
-    if datetime.now().hour == 16 and datetime.now().minute == 56:
+    if datetime.now().hour == 23 and datetime.now().minute == 50:
         # tip_stock_data = stockpredict()
         print("IN")
 
