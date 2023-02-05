@@ -33,9 +33,7 @@ is_login = False
 
 def home(request):
     template = loader.get_template('home.html')
-    # ret = functioni()
     context = {
-        # "data": ret
     }
     return HttpResponse(template.render(context, request))
 
@@ -260,26 +258,3 @@ def modelrunner(tip_stock_data):
 #     for i in range(0, 10):
 #         ret_data.append([values_list[i], error_return[i], maincompany[i]])
 #     return ret_data
-
-
-# def functioni():
-#     graph = []
-#     company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
-#                     'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
-#     for val in company_list:
-#         df = pdr.get_data_yahoo(val, start='2018-01-01', end=datetime.now())
-#         y = np.array(df['Close'])
-#         graph.append(y)
-<<<<<<< HEAD
-<<<<<<< HEAD
-#     return np.array(graph)
-=======
-#     print(graph, type(graph))
-#     # return np.array(graph)
-#     return []
->>>>>>> 8f73f18766c6f68afabfa0ac36609d68cbc2ee49
-=======
-#     print(graph, type(graph))
-#     # return np.array(graph)
-#     return []
->>>>>>> 8f73f18766c6f68afabfa0ac36609d68cbc2ee49
