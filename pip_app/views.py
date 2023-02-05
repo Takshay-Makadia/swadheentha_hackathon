@@ -1,17 +1,17 @@
-from keras.layers import Dense, LSTM
-from keras.models import Sequential
-from sklearn.preprocessing import MinMaxScaler
+# from keras.layers import Dense, LSTM
+# from keras.models import Sequential
+# from sklearn.preprocessing import MinMaxScaler
 from pip_app.models import User
 from django.http import HttpResponse
 from django.template import loader
-from pandas_datareader import data as pdr
+# from pandas_datareader import data as pdr
 from datetime import datetime
 from django.shortcuts import render
 import pickle
 from django.http import HttpResponseRedirect
-import pandas as pd
-import numpy as np
-import yfinance as yf
+# import pandas as pd
+# import numpy as np
+# import yfinance as yf
 
 from django.shortcuts import render
 
@@ -33,9 +33,7 @@ is_login = False
 
 def home(request):
     template = loader.get_template('home.html')
-    # ret = functioni()
     context = {
-        # "data": ret
     }
     return HttpResponse(template.render(context, request))
 
@@ -260,16 +258,3 @@ def modelrunner(tip_stock_data):
 #     for i in range(0, 10):
 #         ret_data.append([values_list[i], error_return[i], maincompany[i]])
 #     return ret_data
-
-
-# def functioni():
-#     graph = []
-#     company_list = ['FDX', 'MSFT', 'AMZN', 'GOOGL',
-#                     'MRO', 'AAL', 'ISRG', 'DAL', 'DE', 'NWL']
-#     for val in company_list:
-#         df = pdr.get_data_yahoo(val, start='2018-01-01', end=datetime.now())
-#         y = np.array(df['Close'])
-#         graph.append(y)
-#     print(graph, type(graph))
-#     # return np.array(graph)
-#     return []
