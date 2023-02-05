@@ -7,14 +7,36 @@
 />
 {% endblock %} {% block body %}
 <div class="main-container">
-  
-    <select class="custom-select my-1 mr-sm-2 fixed-right float-right pt-" style="width:fit-content;" id="inlineFormCustomSelectPref" name="cmp"> 
-      <option selected>Compare...</option>
-      <option value="1">Name</option>
-      <option value="2">Revenue</option>
-      <option value="3">Risk</option>
-    </select>
- 
+  <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Company Name"
+          name="name"
+          id="adjust"
+        />
+      </div>
+      <div class="col">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          name="select"
+        >
+          <button type="submit">
+            <option selected value="1">Rise in share's rate</option>
+          </button>
+          <button></button>
+          <option value="2">Closing Price</option>
+        </select>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-2 mx-4 mb-3 mb-lg-4">
+      <button type="submit" class="btn btn-primary btn-lg">Search</button>
+    </div>
+  </form>
   <span class="align-bottom">
     {% for a,b,c in data %}
     <div
@@ -24,25 +46,26 @@
         <div class="d-flex align-items-start">
           <img
             id="profile-pic"
-            src="/static/images/invest_main.jpg"
+            src="/static/images/investment_home.jpg"
             alt="test"
           />
           <div class="container-md">
-            <h3 class="text-primary">{{ c }}</h3>
+            <h1>{{ c }}</h1>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="font-weight:bold;">Predicted Revenue of next day : {{ b }}</li>
-              <li class="list-group-item" style="font-weight:bold;">Predicted Close value of next Day: {{ a }}</li>
+              <li class="list-group-item">{{ b }}</li>
+              <li class="list-group-item">{{ a }}</li>
             </ul>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            <h5>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto,
+              iste tempore placeat aspernatur rem ex assumenda voluptates
+              consequatur nesciunt inventore provident ad ratione facere
+              doloremque eum corrupti reprehenderit earum vel!
+            </h5>
           </div>
         </div>
       </div>
     </div>
     {% endfor %}
-    <div class="col text-center">
-    <button href="#" class="border border-dark mb-3 border-rounded btn btn-default bg-success text-light" style="width:300px; font-size:1.2em"> Investment Strategy &#8594</button>
-    </div>
   </span>
 </div>
 {% endblock %}
